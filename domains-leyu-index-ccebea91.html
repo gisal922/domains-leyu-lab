@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>关于 leyu · 站点专题介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f3f5;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1f2a3a;
+      padding: 28px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrap {
+      max-width: 980px;
+      width: 100%;
+      background: transparent;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: #ffffff;
+      border-radius: 40px 40px 28px 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      padding: 48px 36px 40px;
+      margin-bottom: 32px;
+      border: 1px solid #e6e9ed;
+      transition: all 0.2s ease;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: #eef0f3;
+      padding: 4px 14px;
+      border-radius: 40px;
+      color: #3d4c62;
+      font-weight: 500;
+      margin-bottom: 18px;
+      border: 1px solid #dadfe5;
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #141c27;
+      margin-bottom: 10px;
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #4b5a6e;
+      max-width: 600px;
+      background: #f6f8fa;
+      padding: 8px 18px;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid #dee3e9;
+    }
+
+    /* 卡片通用设计 */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.02), 0 1px 4px rgba(0,0,0,0.02);
+      padding: 34px 32px;
+      margin-bottom: 24px;
+      border: 1px solid #e6e9ed;
+      transition: box-shadow 0.25s;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 28px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      font-weight: 550;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #eef0f3;
+      display: inline-block;
+      color: #1d293b;
+    }
+
+    .card p {
+      margin-bottom: 16px;
+      font-size: 0.99rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card .small-note {
+      font-size: 0.9rem;
+      color: #5d6f84;
+      background: #f5f7fa;
+      padding: 18px 20px;
+      border-radius: 20px;
+      border-left: 3px solid #b7c1cd;
+      margin-top: 14px;
+    }
+
+    .accent-link {
+      color: #1a4b8c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #b5c4d6;
+      transition: border 0.15s, color 0.15s;
+    }
+
+    .accent-link:hover {
+      color: #0b2d55;
+      border-bottom: 1px solid #0b2d55;
+    }
+
+    /* 特点摘要列表 */
+    .feature-mini-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      margin: 12px 0 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-mini-list li {
+      font-size: 0.95rem;
+      padding-left: 20px;
+      position: relative;
+      color: #2e4057;
+    }
+
+    .feature-mini-list li::before {
+      content: "◇";
+      position: absolute;
+      left: 0;
+      color: #7b8ba0;
+      font-size: 1rem;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      padding: 12px 0 6px;
+      border-bottom: 1px solid #eceff3;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #1f2a3a;
+    }
+
+    .faq-a {
+      font-size: 0.92rem;
+      color: #415166;
+      margin-left: 8px;
+    }
+
+    /* 页尾 */
+    .footer-note {
+      text-align: center;
+      padding: 20px 16px 10px;
+      border-top: 1px solid #dce1e7;
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #5b6c81;
+    }
+
+    .footer-note a {
+      color: #1a4b8c;
+      text-decoration: none;
+      border-bottom: 1px dotted #b1bfd0;
+    }
+
+    .footer-note a:hover {
+      border-bottom: 1px solid #1a4b8c;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      body {
+        padding: 18px 14px 50px;
+      }
+      .hero {
+        padding: 32px 22px 30px;
+      }
+      .hero h1 {
+        font-size: 1.65rem;
+      }
+      .card {
+        padding: 26px 20px;
+      }
+      .feature-mini-list {
+        gap: 6px 18px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+      .hero .sub {
+        font-size: 0.9rem;
+        padding: 6px 14px;
+      }
+      .card h2 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 首页横幅 hero -->
+  <header class="hero">
+    <div class="hero-tag">站点专题 · 杂志风格</div>
+    <h1>关于 leyu 的温和说明</h1>
+    <div class="sub">一个域名的背景、使用方式与可信印象</div>
+    <p style="margin-top: 24px; font-size: 1rem; color: #31445b; max-width: 680px;">
+      在浏览网络资源时，域名的可靠与透明往往是第一步。本文围绕 
+      <a href="https://domains-leyu.com" class="accent-link">leyu</a> 
+      展开介绍，不渲染浮夸承诺，只陈述站点定位、技术背景与访问常识，帮助有兴趣的用户建立客观认知。
+    </p>
+  </header>
+
+  <!-- 第一段：背景说明 -->
+  <section class="card">
+    <h2>站点背景与定位</h2>
+    <p>
+      <a href="https://domains-leyu.com" class="accent-link">leyu</a> 
+      所对应的域名是一处独立的网络入口，其设计初衷在于为用户提供一个聚合信息与服务的轻量平台。域名本身采用简洁的拼写与易记结构，降低记忆成本，同时保持品牌识别度。从技术层面看，该站点部署于标准托管环境，采用常规的安全证书与传输协议，在常规浏览条件下可提供相对稳定的访问体验。
+    </p>
+    <p>
+      需要说明的是，任何域名都只是网络中的坐标，其内容价值取决于运营者的维护与更新。leyu 域名的持有方保持着一定的更新节奏，并在页面中提供必要的说明与指引。用户首次访问时，建议先浏览站点内的「关于」或帮助类页面，以了解具体服务范围与条款。
+    </p>
+  </section>
+
+  <!-- 第二段：特点与场景（卡片内嵌特点列表） -->
+  <section class="card">
+    <h2>使用场景与特点摘要</h2>
+    <p>
+      基于对 <a href="https://domains-leyu.com" class="accent-link">leyu</a> 
+      的观察，该站点适合以下几类日常使用场景：信息查询、轻量工具访问以及特定主题的内容浏览。以下列出几个较明显的特点：
+    </p>
+    <ul class="feature-mini-list">
+      <li>域名直观，拼写无歧义，便于口头传达与输入</li>
+      <li>页面加载速度处于中等偏上水平，移动端适配良好</li>
+      <li>没有过度弹窗或强制跳转，浏览路径相对清晰</li>
+      <li>基础联系渠道与隐私说明均有展示，透明度尚可</li>
+    </ul>
+    <div class="small-note">
+      ◇ 提示：任何网站的功能与内容都可能随时间调整，建议定期查看更新说明。
+    </div>
+  </section>
+
+  <!-- 第三段：可信角度与 FAQ 摘要（自然融入） -->
+  <section class="card">
+    <h2>可信说明与常见疑问摘要</h2>
+    <p>
+      网络环境的复杂性使得用户越来越关注域名的可信度。对于 
+      <a href="https://domains-leyu.com" class="accent-link">leyu</a>，
+      我们从三个侧面提供参考：域名注册信息保持公开可查，无频繁变更；页面内外部链接均指向相关或合作资源，无隐藏重定向；站点部署了标准的安全头部与错误页面，降低被劫持或篡改的风险。
+    </p>
+    <p>
+      以下整理几条用户在初次接触时可能产生的疑问，并附上简要回应：
+    </p>
+
+    <div class="faq-item">
+      <div class="faq-q">问：leyu 域名主要提供什么类型的内容？</div>
+      <div class="faq-a">答：以信息聚合和工具型页面为主，具体分类可在站点导航中查看，整体风格偏务实。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">问：是否需要注册或登录才能使用？</div>
+      <div class="faq-a">答：大部分板块直接开放访问，部分功能可能基于用户体验考虑设置可选账户，但非强制。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">问：如何联系站点维护方？</div>
+      <div class="faq-a">答：页面底部或联系页面一般提供邮箱或表单渠道，回复时效因情况而异。</div>
+    </div>
+    <p style="margin-top: 16px; font-size: 0.93rem; color: #3a4b60;">
+      更详细的信息，建议直接访问 <a href="https://domains-leyu.com" class="accent-link">leyu</a> 并参考站内文档。
+    </p>
+  </section>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <p style="margin-bottom: 6px;">✻ 本专题为独立介绍，内容基于公开信息整理，供参考。</p>
+    <p>如希望进一步了解，可前往 <a href="https://domains-leyu.com">leyu</a> 查看最新页面。</p>
+  </div>
+
+</div>
+</body>
+</html>
