@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞彩网 · 赛事资料与信息索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fdf6e3 0%, #fce4c8 50%, #f8d7b0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #3d2e1a;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #fffdf9;
+            border-radius: 28px;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 12px 30px rgba(150, 100, 50, 0.10), 0 4px 10px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 36px rgba(160, 110, 55, 0.12);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 2.8rem 2.5rem 2.2rem;
+            background: linear-gradient(135deg, #fff7ee 0%, #ffefe0 100%);
+            border-radius: 32px;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #5a3e28;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #7a6248;
+            max-width: 650px;
+            margin: 0.5rem auto 1.2rem;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 0.6rem 1.4rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.04rem;
+            color: #5f4a32;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero a {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: #d9b382;
+            color: #2b1e12;
+            padding: 0.7rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1.08rem;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 8px rgba(180, 120, 60, 0.15);
+        }
+
+        .hero a:hover {
+            background: #cb9f6e;
+            transform: translateY(-2px);
+        }
+
+        /* 二级标题 */
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #4c3823;
+            margin-bottom: 1rem;
+            border-left: 5px solid #daa97a;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #5c432c;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 优势网格 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .grid-item {
+            background: #fffbf6;
+            border-radius: 22px;
+            padding: 1.5rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(150, 100, 50, 0.06);
+            transition: background 0.15s;
+        }
+
+        .grid-item .emoji-badge {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            color: #4d3a27;
+        }
+
+        /* 说明区 */
+        .explain-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .explain-block .text {
+            flex: 2;
+            min-width: 260px;
+        }
+
+        .explain-block .highlight-box {
+            flex: 1.2;
+            min-width: 200px;
+            background: #f5ebe0;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            align-self: center;
+        }
+
+        .highlight-box p {
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box a {
+            color: #7a5437;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px dotted #b68b63;
+        }
+
+        .highlight-box a:hover {
+            color: #3f2b1a;
+            border-bottom-color: #7a5437;
+        }
+
+        /* FAQ 摘要 */
+        .faq-list {
+            list-style: none;
+        }
+
+        .faq-list li {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #eedbcb;
+        }
+
+        .faq-list li:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #4f3a26;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-a {
+            color: #5f4b37;
+            font-size: 0.96rem;
+        }
+
+        .faq-a a {
+            color: #7a5437;
+            text-decoration: underline wavy #dbb48b 1px;
+            text-underline-offset: 4px;
+        }
+
+        .faq-a a:hover {
+            color: #3f2b1a;
+        }
+
+        /* 底部 */
+        .footer-links {
+            padding: 1.5rem 0.8rem;
+            text-align: center;
+            font-size: 0.92rem;
+            color: #6b5540;
+            border-top: 1px solid #e5cfbb;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #6b4f34;
+            text-decoration: none;
+            margin: 0 0.6rem;
+            font-weight: 450;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #9f7b5a;
+        }
+
+        .footer-links .sep {
+            color: #bc9f85;
+            margin: 0 0.2rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 1.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+                padding: 0.3rem 1rem;
+            }
+            .explain-block {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .card {
+                padding: 1.4rem 1.1rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+                padding-left: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- Hero 区 -->
+    <header class="hero card">
+        <h1>赛事信息 · 资料索引</h1>
+        <span class="sub">从整理到理解</span>
+        <p>围绕竞彩赛事构建的一个轻量级信息聚合视角，帮助爱好者在庞杂的数据中快速定位自己需要的对战背景、队伍近况与历史交锋脉络。这里不生产预测，只做有结构的资料梳理。</p>
+        <a href="https://site-zh-sporttery.com">竞彩网</a>
+    </header>
+
+    <!-- 优势区：资料索引的三个方向 -->
+    <section class="card">
+        <h2>为什么从资料索引入手</h2>
+        <div class="grid-3">
+            <div class="grid-item">
+                <span class="emoji-badge">📋</span>
+                <h3>结构化存档</h3>
+                <p>将零散的对阵数据、积分走势、伤病简报按赛季与联赛归类，形成可回溯的档案条目，降低反复查找的成本。</p>
+            </div>
+            <div class="grid-item">
+                <span class="emoji-badge">🔍</span>
+                <h3>多维度标签</h3>
+                <p>同一场比赛可以附加主客差异、近期状态、历史同赔等标签，便于从不同角度交叉查阅，而非只看单一数值。</p>
+            </div>
+            <div class="grid-item">
+                <span class="emoji-badge">🧩</span>
+                <h3>透明来源</h3>
+                <p>所有展示的统计与参考均标注数据源或采集时间，使用者可自行核对，保持信息链条的清晰与可验证性。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 说明区：具体怎么组织 -->
+    <section class="card">
+        <h2>索引的内容构成</h2>
+        <div class="explain-block">
+            <div class="text">
+                <p>资料整理围绕三个基本模块展开：<strong>赛事基础数据</strong>（联赛赛程、积分榜、射手榜）、<strong>对阵档案</strong>（近 5 场战绩、交锋记录、红黄牌趋势）以及<strong>动态简报</strong>（赛前发布会摘要、预计阵容、天气影响）。</p>
+                <p style="margin-top: 0.8rem;">每个模块都尽量保留原始数据格式并附上采集日期，方便使用者自行判断时效性。同时提供按联赛、日期、球队等字段的快速筛选，提升检索效率。</p>
+            </div>
+            <div class="highlight-box">
+                <p>🔹 如果你想从最基础的联赛列表开始浏览，或者想查看某支球队近期的完整赛程，可以前往 <a href="https://site-zh-sporttery.com">竞彩网</a> 的赛事中心，那里有更全面的数据表与筛选工具。</p>
+                <p style="margin-top: 0.6rem;">🔹 本索引页面仅作为资料查找的起点，所有深度分析仍需用户结合多方信息自行判断。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section class="card">
+        <h2>常见问题 · 索引使用提示</h2>
+        <ul class="faq-list">
+            <li>
+                <span class="faq-q">❓ 索引中的数据多久更新一次？</span>
+                <span class="faq-a">主要联赛的数据通常在每个比赛日结束后 4~8 小时内完成同步，次级联赛或杯赛可能会有 12~24 小时间隔。所有页面顶部会标注最近一次数据刷新时间。</span>
+            </li>
+            <li>
+                <span class="faq-q">❓ 能否直接根据索引进行投注参考？</span>
+                <span class="faq-a">索引只提供客观历史数据与基础统计，不包含任何倾向性分析。投注决策需要结合个人判断、即时赔率、球队最新动态等多重因素，本页内容不构成任何建议。</span>
+            </li>
+            <li>
+                <span class="faq-q">❓ 如何反馈索引中缺失的赛事或数据错误？</span>
+                <span class="faq-a">每一份数据卡片下方都设有反馈入口（目前为邮件收集形式），你也可以通过 <a href="https://site-zh-sporttery.com">竞彩网</a> 的客服通道提交具体场次信息，维护团队会定期核实与补录。</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+        <span>信息索引 · 仅供参考</span>
+        <span class="sep">|</span>
+        <a href="https://site-zh-sporttery.com">竞彩网</a>
+        <span class="sep">|</span>
+        <a href="https://site-zh-sporttery.com">竞彩网</a>
+        <span class="sep">|</span>
+        <span>更新于 2025-04</span>
+    </div>
+
+</div>
+</body>
+</html>
